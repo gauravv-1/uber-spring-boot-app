@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+#sql-data-init
+/src/main/resources/data.sql
