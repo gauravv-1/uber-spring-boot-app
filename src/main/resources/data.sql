@@ -1,5 +1,5 @@
 INSERT INTO app_user (name, email, password) VALUES
-('Gaurav Pisal', 'pisalgaurav91@gmail.com', 'Password'),
+('Gaurav Pisal', 'pisalgaurav91@gmail.com', '$2a$10$y9RZtgvdWaF157dNdOkesO44Lt7q2CBdhtEycavlC69VCT/qAUvx.'),
 ('Vivaan Khanna', 'vivaan.khanna@example.com', '$2a$10$examplePasswordHash2'),
 ('Aditya Verma', 'aditya.verma@example.com', '$2a$10$examplePasswordHash3'),
 ('Vihaan Kapoor', 'vihaan.kapoor@example.com', '$2a$10$examplePasswordHash4'),
@@ -38,7 +38,9 @@ INSERT INTO app_user (name, email, password) VALUES
 ('Geeta Bajaj', 'geeta.bajaj@example.com', '$2a$10$examplePasswordHash37'),
 ('Ramesh Malhotra', 'ramesh.malhotra@example.com', '$2a$10$examplePasswordHash38'),
 ('Seema Rao', 'seema.rao@example.com', '$2a$10$examplePasswordHash39'),
-('Tarun Sharma', 'tarun.sharma@example.com', '$2a$10$examplePasswordHash40');
+('Tarun Sharma', 'tarun.sharma@example.com', '$2a$10$examplePasswordHash40'),
+('Suraj Divekar', 'surajdivekar@gmail.com', '$2b$12$6CpxmhkrsZXv7xzHA0lzvumJ4NuxkpC9MH8dKAh9J4YjH6BmFVfaC'),
+('Omkar Bodke', 'omkarbodke@gmail.com', '$2b$12$I6HnF3YvdWLgbuP7rIvl..dZvGsXz286RDdyttdA.6WFGnW9yFV0O');
 
 INSERT INTO user_roles (user_id, roles) VALUES
 (1, 'RIDER'),
@@ -119,7 +121,9 @@ INSERT INTO user_roles (user_id, roles) VALUES
 (39, 'RIDER'),
 (39, 'DRIVER'),
 (40, 'RIDER'),
-(40, 'DRIVER');
+(40, 'DRIVER'),
+(41, 'DRIVER'),
+(42, 'ADMIN');
 
 INSERT INTO rider (user_id, rating) VALUES
 (1, 4.9);
@@ -163,7 +167,8 @@ INSERT INTO driver (user_id, rating, available, current_location) VALUES
 (37, 4.6, true, ST_GeomFromText('POINT(77.2465 28.6419)', 4326)),
 (38, 4.4, true, ST_GeomFromText('POINT(77.2475 28.6439)', 4326)),
 (39, 4.7, true, ST_GeomFromText('POINT(77.2485 28.6459)', 4326)),
-(40, 4.8, true, ST_GeomFromText('POINT(77.2495 28.6479)', 4326));
+(40, 4.8, true, ST_GeomFromText('POINT(77.2495 28.6479)', 4326)),
+(41, 4.8, true, ST_GeomFromText('POINT(77.2495 28.6479)', 4326));
 
 
 INSERT INTO wallet (user_id, balance) VALUES

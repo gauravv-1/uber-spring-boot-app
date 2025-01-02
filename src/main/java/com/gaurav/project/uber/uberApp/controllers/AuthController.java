@@ -27,12 +27,7 @@ public class AuthController {
 
     }
 
-    @Secured("ROLE_ADMIN")
-    @PostMapping("/onBoardNewDriver/{userId}")
-    ResponseEntity<DriverDto> onBoardNewDriver(@PathVariable Long userId,@RequestBody OnboardDriverDto onboardDriverDto){
-        return new ResponseEntity<>(authService.onBoardNewDriver(userId,onboardDriverDto.getVehicleId()),HttpStatus.CREATED);
 
-    }
 
     @PostMapping("/login")
     ResponseEntity<LoginResponseDto> login (@RequestBody LoginRequestDto loginRequestDto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
@@ -42,6 +37,13 @@ public class AuthController {
         cookie.setHttpOnly(true);
         httpServletResponse.addCookie(cookie);
         return ResponseEntity.ok(new LoginResponseDto(tokens[0]));
+    }
+
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/onBoardNewDriver/{userId}")
+    ResponseEntity<DriverDto> onBoardNewDriver(@PathVariable Long userId,@RequestBody OnboardDriverDto onboardDriverDto){
+        return new ResponseEntity<>(authService.onBoardNewDriver(userId,onboardDriverDto.getVehicleId()),HttpStatus.CREATED);
+
     }
 
     @PostMapping("/refresh")

@@ -15,6 +15,7 @@ import com.gaurav.project.uber.uberApp.services.DriverService;
 import com.gaurav.project.uber.uberApp.services.RiderService;
 import com.gaurav.project.uber.uberApp.services.WalletService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,6 +28,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthServiceImpl implements AuthService {
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
@@ -77,6 +79,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public DriverDto onBoardNewDriver(Long userId, String vehicleId) {
+        log.info("In Service Method onBoardNewDriver");
         User user = userRepository.findById(userId).orElseThrow(()->new ResourceNotFoundException("User not found with id "+userId));
         if(user.getRoles().contains(Role.DRIVER)) throw new RuntimeException("User with id "+user+" is already a driver");
         Driver createDriver = Driver.builder()
@@ -85,10 +88,14 @@ public class AuthServiceImpl implements AuthService {
                 .vehicleId(vehicleId)
                 .available(true)
                 .build();
+        log.info("Driver obj craeted");
 
         user.getRoles().add(Role.DRIVER);
         userRepository.save(user);
+        log.info("Driver obj saved");
+
         Driver savedDriver = driverService.createNewDriver(createDriver);
+        log.info("Driver obj saved");
 
         return modelMapper.map(savedDriver,DriverDto.class);
 
